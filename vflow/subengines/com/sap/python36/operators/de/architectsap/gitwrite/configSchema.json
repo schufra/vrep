@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$id": "http://sap.com/vflow/de.architectsap.gitwrite.configSchema.json",
+    "type": "object",
+    "properties": {
+        "codelanguage": {
+            "type": "string"
+        },
+        "script": {
+            "type": "string"
+        },
+        "access_token": {
+            "title": "Personal access token",
+            "type": "string"
+        },
+        "repo": {
+            "title": "Repository",
+            "type": "string"
+        },
+        "branch": {
+            "title": "Branch",
+            "type": "string"
+        },
+        "comment": {
+            "title": "Comment",
+            "type": "string"
+        }
+    },
+    "required": []
+}
