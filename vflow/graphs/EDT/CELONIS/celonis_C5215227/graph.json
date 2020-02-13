@@ -6,7 +6,7 @@
             "metadata": {
                 "label": "Generate SQL",
                 "x": 17,
-                "y": 12,
+                "y": 72,
                 "height": 80,
                 "width": 120,
                 "extensible": true,
@@ -20,7 +20,7 @@
             "metadata": {
                 "label": "Celonis Push Job Creator",
                 "x": 186,
-                "y": 12,
+                "y": 72,
                 "height": 80,
                 "width": 120,
                 "extensible": false,
@@ -37,13 +37,36 @@
                     "team": "sap-qa"
                 }
             }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 370.9999990463257,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {}
+            }
+        },
+        "saphanaclient1": {
+            "component": "com.sap.hana.client2",
+            "metadata": {
+                "label": "SAP HANA (IC*)",
+                "x": 370.9999990463257,
+                "y": 132,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
         }
     },
     "groups": [],
     "connections": [
         {
             "metadata": {
-                "points": "141,52 181,52"
+                "points": "141,112 181,112"
             },
             "src": {
                 "port": "out",
@@ -52,6 +75,32 @@
             "tgt": {
                 "port": "input",
                 "process": "celonispushjobcreator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "310,103 337.99999952316284,103 337.99999952316284,52 365.9999990463257,52"
+            },
+            "src": {
+                "port": "debug",
+                "process": "celonispushjobcreator1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "310,121 337.99999952316284,121 337.99999952316284,163 365.9999990463257,163"
+            },
+            "src": {
+                "port": "output",
+                "process": "celonispushjobcreator1"
+            },
+            "tgt": {
+                "port": "sql",
+                "process": "saphanaclient1"
             }
         }
     ],
