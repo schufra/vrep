@@ -5,8 +5,8 @@
             "component": "com.sap.util.constantGenerator",
             "metadata": {
                 "label": "Generate SQL",
-                "x": 274,
-                "y": 140,
+                "x": 17,
+                "y": 12,
                 "height": 80,
                 "width": 120,
                 "extensible": true,
@@ -14,10 +14,47 @@
                     "content": "select ZZ_SEGMENT,VTEXT from ${Use_Schema}.ZBP_SEG_TYPET where CLIENT ='001' and SPRAS = 'E'"
                 }
             }
+        },
+        "celonispushjobcreator1": {
+            "component": "cloud.celonis.pushJobCreator",
+            "metadata": {
+                "label": "Celonis Push Job Creator",
+                "x": 186,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": false,
+                "config": {
+                    "api_key": "ODMxOTIyZjYtNTVlMy00MWQ3LWI2MTgtZmY0N2U4MmI3NmQwOmc4UVRYUUJiWThrQ3pQUGIrdzVjcU5CWHpHbjRQak54Rk55U01ENy9VZUhO",
+                    "pool_id": "2b3ee944-f813-4035-98b5-b0249a5d5de3",
+                    "primary_keys": [
+                        "CASE_KEY"
+                    ],
+                    "realm": "eu-1",
+                    "is_upsert": true,
+                    "log_level": "INFO",
+                    "table_name": "SEGMENT",
+                    "team": "sap-qa"
+                }
+            }
         }
     },
     "groups": [],
-    "connections": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "141,52 181,52"
+            },
+            "src": {
+                "port": "out",
+                "process": "constantgenerator1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "celonispushjobcreator1"
+            }
+        }
+    ],
     "inports": {},
     "outports": {},
     "properties": {}
