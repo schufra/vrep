@@ -92,40 +92,6 @@
                 "config": {}
             }
         },
-        "celonispushjobcreator1": {
-            "component": "cloud.celonis.pushJobCreator",
-            "metadata": {
-                "label": "Celonis Push Job Creator",
-                "x": 300.9999990463257,
-                "y": 72,
-                "height": 80,
-                "width": 120,
-                "extensible": false,
-                "config": {
-                    "api_key": "ODMxOTIyZjYtNTVlMy00MWQ3LWI2MTgtZmY0N2U4MmI3NmQwOmc4UVRYUUJiWThrQ3pQUGIrdzVjcU5CWHpHbjRQak54Rk55U01ENy9VZUhO",
-                    "is_upsert": false,
-                    "pool_id": "2b3ee944-f813-4035-98b5-b0249a5d5de3",
-                    "primary_keys": [
-                        "CASE_KEY"
-                    ],
-                    "realm": "eu-1",
-                    "team": "sap-qa",
-                    "table_name": "SEGMENT"
-                }
-            }
-        },
-        "wiretap2": {
-            "component": "com.sap.util.wiretap",
-            "metadata": {
-                "label": "Wiretap",
-                "x": 485.99999809265137,
-                "y": 12,
-                "height": 80,
-                "width": 120,
-                "ui": "dynpath",
-                "config": {}
-            }
-        },
         "celoniscloudupload1": {
             "component": "cloud.celonis.pushToCelonisIBC",
             "metadata": {
@@ -170,45 +136,6 @@
             "tgt": {
                 "port": "instring",
                 "process": "tomessageconverter1"
-            }
-        },
-        {
-            "metadata": {
-                "points": "255.99999904632568,112 295.9999990463257,112"
-            },
-            "src": {
-                "port": "out",
-                "process": "tomessageconverter1"
-            },
-            "tgt": {
-                "port": "input",
-                "process": "celonispushjobcreator1"
-            }
-        },
-        {
-            "metadata": {
-                "points": "424.9999990463257,121 452.9999985694885,121 452.9999985694885,163 480.99999809265137,163"
-            },
-            "src": {
-                "port": "output",
-                "process": "celonispushjobcreator1"
-            },
-            "tgt": {
-                "port": "sql",
-                "process": "saphanaclient1"
-            }
-        },
-        {
-            "metadata": {
-                "points": "424.9999990463257,103 452.9999985694885,103 452.9999985694885,52 480.99999809265137,52"
-            },
-            "src": {
-                "port": "debug",
-                "process": "celonispushjobcreator1"
-            },
-            "tgt": {
-                "port": "in",
-                "process": "wiretap2"
             }
         },
         {
@@ -261,6 +188,19 @@
             "tgt": {
                 "port": "stop",
                 "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "255.99999904632568,112 368.5,112 368.5,163 480.99999809265137,163"
+            },
+            "src": {
+                "port": "out",
+                "process": "tomessageconverter1"
+            },
+            "tgt": {
+                "port": "sql",
+                "process": "saphanaclient1"
             }
         }
     ],
