@@ -3,23 +3,6 @@
     "iconsrc": "",
     "description": "Celonis No SQL",
     "processes": {
-        "constantgenerator1": {
-            "component": "com.sap.util.constantGenerator",
-            "metadata": {
-                "label": "Generate SQL",
-                "x": 17,
-                "y": 72,
-                "height": 80,
-                "width": 120,
-                "extensible": true,
-                "config": {
-                    "counter": 0,
-                    "script": "// constants\nvar onceMode = \"once\";\nvar pulseMode = \"pulse\";\nvar triggerMode = \"trigger\";\nvar validModes = [onceMode, pulseMode, triggerMode];\nvar onceActivatedModes = [onceMode, pulseMode];\n\nvar content = $.config.getString(\"content\");\nvar mode = $.config.getString(\"mode\") || onceMode;\nvar counter = $.config.getInt(\"counter\") || 0;\n\nif (validModes.indexOf(mode) == -1) {\n    $.fail(\"Invalid mode '\" + mode + \"'\");\n}\n\nvar isOnceActivatedMode = onceActivatedModes.indexOf(mode) != -1;\n\nfunction emit() {\n    $.out(content);\n}\n\nfunction tick(ctx) {\n    emit();\n}\n\nif (0 === counter) {\n    switch (mode) {\n        case onceMode:\n            $.addGenerator(tick);\n            break;\n        case pulseMode:\n            $.addTimer($.config.getString(\"duration\"), tick);\n            break;\n    }\n}\n\n$.setPortCallback(\"in\", function(ctx, s) {\n    counter--;\n    if (counter <= 0) {\n        if (isOnceActivatedMode) {\n            if (counter === 0) {\n                switch (mode) {\n                    case onceMode:\n                        emit();\n                        break;\n                    case pulseMode:\n                        $.addTimer($.config.getString(\"duration\"), tick);\n                        break;\n                }\n            }\n        } else {\n            emit();\n        }\n    }\n});\n",
-                    "content": "",
-                    "mode": "once"
-                }
-            }
-        },
         "graphterminator1": {
             "component": "com.sap.util.graphTerminator",
             "metadata": {
@@ -30,48 +13,10 @@
                 "width": 120,
                 "config": {}
             }
-        },
-        "tomessageconverter1": {
-            "component": "com.sap.util.toMessageConverter",
-            "metadata": {
-                "label": "ToMessage Converter",
-                "x": 201.99999904632568,
-                "y": 87,
-                "height": 50,
-                "width": 50,
-                "config": {}
-            }
         }
     },
     "groups": [],
-    "connections": [
-        {
-            "metadata": {
-                "points": "141,112 168.99999952316284,112 168.99999952316284,121 196.99999904632568,121"
-            },
-            "src": {
-                "port": "out",
-                "process": "constantgenerator1"
-            },
-            "tgt": {
-                "port": "instring",
-                "process": "tomessageconverter1"
-            }
-        },
-        {
-            "metadata": {
-                "points": "255.99999904632568,112 1035.9999952316284,112"
-            },
-            "src": {
-                "port": "out",
-                "process": "tomessageconverter1"
-            },
-            "tgt": {
-                "port": "stop",
-                "process": "graphterminator1"
-            }
-        }
-    ],
+    "connections": [],
     "inports": {},
     "outports": {}
 }
