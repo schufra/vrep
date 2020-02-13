@@ -77,6 +77,30 @@
                     "team": "sap-qa"
                 }
             }
+        },
+        "celonisstatus1": {
+            "component": "EDT.CELONIS.call.status",
+            "metadata": {
+                "label": "Celonis Status",
+                "x": 740.999997138977,
+                "y": 132,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {}
+            }
+        },
+        "wiretap2": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 740.999997138977,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {}
+            }
         }
     },
     "groups": [],
@@ -131,6 +155,32 @@
             "tgt": {
                 "port": "input",
                 "process": "celoniscloudupload1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "679.9999980926514,121 707.9999976158142,121 707.9999976158142,172 735.999997138977,172"
+            },
+            "src": {
+                "port": "output",
+                "process": "celoniscloudupload1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "celonisstatus1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "679.9999980926514,103 707.9999976158142,103 707.9999976158142,52 735.999997138977,52"
+            },
+            "src": {
+                "port": "debug",
+                "process": "celoniscloudupload1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap2"
             }
         }
     ],
