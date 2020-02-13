@@ -3,44 +3,6 @@
     "iconsrc": "",
     "description": "Celonis No SQL",
     "processes": {
-        "saphanaclient1": {
-            "component": "com.sap.hana.client2",
-            "metadata": {
-                "label": "SAP HANA (IC*)",
-                "x": 485.99999809265137,
-                "y": 132,
-                "height": 80,
-                "width": 120,
-                "subengines": [
-                    "main"
-                ],
-                "config": {
-                    "connection": {
-                        "connectionProperties": {
-                            "additionalHosts": [],
-                            "host": "host",
-                            "password": "",
-                            "port": 9000,
-                            "useTLS": false,
-                            "user": ""
-                        },
-                        "configurationType": "Configuration Manager",
-                        "connectionID": "ICP_DIP"
-                    },
-                    "csvMode": "Stream",
-                    "connectionType": "Insecure (no encryption)",
-                    "csvEmptyFieldValue": "NULL",
-                    "tableColumns": [],
-                    "insertMode": "INSERT",
-                    "initTable": "None",
-                    "inputFormat": "CSV",
-                    "outputInBatches": true,
-                    "outputBatchSize": 1000,
-                    "networkBatchSize": 1000,
-                    "connectionTimeoutInMs": 20000
-                }
-            }
-        },
         "constantgenerator1": {
             "component": "com.sap.util.constantGenerator",
             "metadata": {
@@ -98,24 +60,11 @@
         },
         {
             "metadata": {
-                "points": "255.99999904632568,112 368.5,112 368.5,163 480.99999809265137,163"
+                "points": "255.99999904632568,112 1035.9999952316284,112"
             },
             "src": {
                 "port": "out",
                 "process": "tomessageconverter1"
-            },
-            "tgt": {
-                "port": "sql",
-                "process": "saphanaclient1"
-            }
-        },
-        {
-            "metadata": {
-                "points": "609.9999980926514,172 823,172 823,112 1035.9999952316284,112"
-            },
-            "src": {
-                "port": "result",
-                "process": "saphanaclient1"
             },
             "tgt": {
                 "port": "stop",
