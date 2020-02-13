@@ -101,6 +101,17 @@
                 "ui": "dynpath",
                 "config": {}
             }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 925.9999961853027,
+                "y": 72,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
         }
     },
     "groups": [],
@@ -181,6 +192,19 @@
             "tgt": {
                 "port": "in",
                 "process": "wiretap2"
+            }
+        },
+        {
+            "metadata": {
+                "points": "864.999997138977,172 892.9999966621399,172 892.9999966621399,112 920.9999961853027,112"
+            },
+            "src": {
+                "port": "out",
+                "process": "celonisstatus1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
             }
         }
     ],
