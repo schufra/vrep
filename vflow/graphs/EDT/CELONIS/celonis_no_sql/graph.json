@@ -79,18 +79,6 @@
                 "width": 50,
                 "config": {}
             }
-        },
-        "celonisstatus1": {
-            "component": "EDT.CELONIS.call.status",
-            "metadata": {
-                "label": "Celonis Status",
-                "x": 855.9999961853027,
-                "y": 132,
-                "height": 80,
-                "width": 120,
-                "extensible": true,
-                "config": {}
-            }
         }
     },
     "groups": [],
@@ -110,19 +98,6 @@
         },
         {
             "metadata": {
-                "points": "979.9999961853027,172 1007.9999957084656,172 1007.9999957084656,112 1035.9999952316284,112"
-            },
-            "src": {
-                "port": "out",
-                "process": "celonisstatus1"
-            },
-            "tgt": {
-                "port": "stop",
-                "process": "graphterminator1"
-            }
-        },
-        {
-            "metadata": {
                 "points": "255.99999904632568,112 368.5,112 368.5,163 480.99999809265137,163"
             },
             "src": {
@@ -136,15 +111,15 @@
         },
         {
             "metadata": {
-                "points": "609.9999980926514,172 850.9999961853027,172"
+                "points": "609.9999980926514,172 823,172 823,112 1035.9999952316284,112"
             },
             "src": {
                 "port": "result",
                 "process": "saphanaclient1"
             },
             "tgt": {
-                "port": "in",
-                "process": "celonisstatus1"
+                "port": "stop",
+                "process": "graphterminator1"
             }
         }
     ],
