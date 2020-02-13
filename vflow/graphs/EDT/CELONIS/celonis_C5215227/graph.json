@@ -60,6 +60,23 @@
                 "width": 120,
                 "config": {}
             }
+        },
+        "celoniscloudupload1": {
+            "component": "cloud.celonis.pushToCelonisIBC",
+            "metadata": {
+                "label": "Celonis Cloud Upload",
+                "x": 555.9999980926514,
+                "y": 72,
+                "height": 80,
+                "width": 120,
+                "extensible": false,
+                "config": {
+                    "api_key": "ODMxOTIyZjYtNTVlMy00MWQ3LWI2MTgtZmY0N2U4MmI3NmQwOmc4UVRYUUJiWThrQ3pQUGIrdzVjcU5CWHpHbjRQak54Rk55U01ENy9VZUh",
+                    "pool_id": "2b3ee944-f813-4035-98b5-b0249a5d5de3",
+                    "realm": "eu-1",
+                    "team": "sap-qa"
+                }
+            }
         }
     },
     "groups": [],
@@ -101,6 +118,19 @@
             "tgt": {
                 "port": "sql",
                 "process": "saphanaclient1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "494.9999990463257,172 522.9999985694885,172 522.9999985694885,112 550.9999980926514,112"
+            },
+            "src": {
+                "port": "result",
+                "process": "saphanaclient1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "celoniscloudupload1"
             }
         }
     ],
