@@ -1,0 +1,125 @@
+{
+    "properties": {},
+    "processes": {
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 355,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {}
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 693,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "config": {}
+            }
+        },
+        "sleep1": {
+            "component": "de.architectsap.sleep",
+            "metadata": {
+                "label": "Sleep",
+                "x": 524,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {
+                    "duration": 50000
+                }
+            }
+        },
+        "constantgenerator1": {
+            "component": "com.sap.util.constantGenerator",
+            "metadata": {
+                "label": "Constant Generator",
+                "x": 17,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {
+                    "content": "{}"
+                }
+            }
+        },
+        "gittest1": {
+            "component": "de.architectsap.gittest",
+            "metadata": {
+                "label": "GitTest",
+                "x": 186,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "648,52 688,52"
+            },
+            "src": {
+                "port": "output",
+                "process": "sleep1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "141,52 181,52"
+            },
+            "src": {
+                "port": "out",
+                "process": "constantgenerator1"
+            },
+            "tgt": {
+                "port": "inFile",
+                "process": "gittest1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "310,52 350,52"
+            },
+            "src": {
+                "port": "debug",
+                "process": "gittest1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "479,52 519,52"
+            },
+            "src": {
+                "port": "out",
+                "process": "wiretap1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "sleep1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {}
+}
