@@ -2,19 +2,7 @@
     "properties": {},
     "iconsrc": "",
     "description": "Celonis No SQL",
-    "processes": {
-        "graphterminator1": {
-            "component": "com.sap.util.graphTerminator",
-            "metadata": {
-                "label": "Graph Terminator",
-                "x": 1040.9999952316284,
-                "y": 72,
-                "height": 80,
-                "width": 120,
-                "config": {}
-            }
-        }
-    },
+    "processes": {},
     "groups": [],
     "connections": [],
     "inports": {},
