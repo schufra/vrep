@@ -1,0 +1,24 @@
+{
+    "description": "C5215227 Template",
+    "processes": {
+        "constantgenerator1": {
+            "component": "com.sap.util.constantGenerator",
+            "metadata": {
+                "label": "Generate SQL",
+                "x": 274,
+                "y": 140,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {
+                    "content": "select ZZ_SEGMENT,VTEXT from ${Use_Schema}.ZBP_SEG_TYPET where CLIENT ='001' and SPRAS = 'E'"
+                }
+            }
+        }
+    },
+    "groups": [],
+    "connections": [],
+    "inports": {},
+    "outports": {},
+    "properties": {}
+}
