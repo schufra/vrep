@@ -1,4 +1,13 @@
 {
+    "properties": {},
+    "groupResources": {
+        "memory": {
+            "limit": "256Mi"
+        },
+        "cpu": {
+            "limit": "100m"
+        }
+    },
     "description": "C5215227 Template",
     "processes": {
         "constantgenerator1": {
@@ -209,6 +218,5 @@
         }
     ],
     "inports": {},
-    "outports": {},
-    "properties": {}
+    "outports": {}
 }
