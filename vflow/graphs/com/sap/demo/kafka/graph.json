@@ -1,0 +1,138 @@
+{
+    "properties": {},
+    "iconsrc": "kafka.png",
+    "description": "Kafka",
+    "processes": {
+        "20fb": {
+            "component": "com.sap.kafka.producer",
+            "metadata": {
+                "label": "producer (20fb)",
+                "x": 201.99999904632568,
+                "y": 27,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "topic": "test_topic",
+                    "kafkaVersion": "0.10.1",
+                    "connectionType": "connection management",
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "Kafka"
+                    }
+                }
+            }
+        },
+        "z8d": {
+            "component": "com.sap.util.terminal",
+            "metadata": {
+                "label": "terminal (z8d)",
+                "x": 386.99999809265137,
+                "y": 72,
+                "height": 80,
+                "width": 120,
+                "ui": "dynpath",
+                "config": {
+                    "routes": [
+                        {
+                            "Path": "/",
+                            "RoutingType": "static",
+                            "Target": "ui"
+                        },
+                        {
+                            "Path": "/socket",
+                            "RoutingType": "websocket",
+                            "Target": "1"
+                        }
+                    ]
+                }
+            }
+        },
+        "uxu": {
+            "component": "com.sap.util.dataGenerator",
+            "metadata": {
+                "label": "dataGenerator (uxu)",
+                "x": 17,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "config": {
+                    "script": "// This operator is needed to keep compatibility to the old datagenerator\nvar counter = 0;\n\ngetRandom = function(min, max) {\n    return Math.random() * (max - min) + min;\n};\n\ngetRandomInt = function(min, max) {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n};\n\ngenerateData = function() {\n\n    // payload = \"3,26.4,60.9,532.0,1.0,24.0,55.0,0,657.0,437.0,1388,5,-33,3.33\"\n\n    var payload = getRandomInt(2, 6) + \",\"; // DeviceID\n    payload += getRandom(25, 26) + \",\"; // Temperatur\n    payload += getRandom(40, 60) + \",\"; // Humidity\n    payload += getRandom(500, 600) + \",\"; // CO2    \n    payload += getRandom(0.9, 1.1) + \",\"; // CO    \n    payload += getRandom(23, 25) + \",\"; // LPG    \n    payload += getRandom(50, 60) + \",\"; // Smoke  \n    payload += getRandomInt(0, 1) + \",\"; // Presence \n    payload += getRandom(600, 800) + \",\"; // Light  \n    payload += getRandom(400, 500) + \"\\r\\n\"; // Sound  \n\n    return payload;\n};\n\n$.addTimer(\"500ms\",doTick);\n\nfunction doTick(ctx) {\n    $.output(counter+\",\"+generateData());\n    counter++;\n}\n"
+                }
+            }
+        },
+        "kafkaconsumer21": {
+            "component": "com.sap.kafka.consumer2",
+            "metadata": {
+                "label": "Kafka Consumer2",
+                "x": 17,
+                "y": 132,
+                "height": 80,
+                "width": 120,
+                "config": {
+                    "kafkaVersion": "0.10.1",
+                    "connectionType": "connection management",
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "Kafka"
+                    }
+                }
+            }
+        },
+        "tostringconverter1": {
+            "component": "com.sap.util.toStringConverter",
+            "metadata": {
+                "label": "ToString Converter",
+                "x": 236.49999904632568,
+                "y": 147,
+                "height": 50,
+                "width": 50,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "141,52 168.99999952316284,52 168.99999952316284,67 196.99999904632568,67"
+            },
+            "src": {
+                "port": "output",
+                "process": "uxu"
+            },
+            "tgt": {
+                "port": "message",
+                "process": "20fb"
+            }
+        },
+        {
+            "metadata": {
+                "points": "141,163 168.99999952316284,163 168.99999952316284,181 231.49999904632568,181"
+            },
+            "src": {
+                "port": "message",
+                "process": "kafkaconsumer21"
+            },
+            "tgt": {
+                "port": "inmessage",
+                "process": "tostringconverter1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "290.4999990463257,172 353.9999985694885,172 353.9999985694885,112 381.99999809265137,112"
+            },
+            "src": {
+                "port": "outstring",
+                "process": "tostringconverter1"
+            },
+            "tgt": {
+                "port": "in1",
+                "process": "z8d"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {}
+}
